@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,6 +24,17 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+// Route::get('/home', function(){
+//     return Inertia::render('Home');
+// });
+Route::get('/home',[PostController::class, 'index'])->name('home');
+
+Route::get('/about', function(){
+    return Inertia::render('About',[
+        'name' => 'Ramon',
+        'curso' => 'Laravel + Inertia + Vue'
+    ]);
+})->name('about');
 
 Route::middleware([
     'auth:sanctum',

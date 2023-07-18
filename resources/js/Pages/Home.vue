@@ -1,4 +1,7 @@
 <template >
+    <Head>
+        <title>Home</title>
+    </Head>
     <div>
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="px-4 sm:px-6 lg:px-8">
@@ -7,12 +10,9 @@
                     <h1 class="text-xl font-semibold text-gray-900">LISTAGEM DE POSTAGENS</h1>
                 </div>
                 <hr />
-                <div class="mt-4">
-                    <Link :href="route('home')">Home</Link> -
-                    <Link :href="route('about')">About</Link>
-                </div>
+
                 <!-- Links -->
-                <!-- <menu-layout /> -->
+                <menu-layout />
 
 
                 <!-- <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -55,13 +55,15 @@
     </div>
 </template>
 <script>
-import {Link} from '@inertiajs/vue3'
-
+import {Link, Head} from '@inertiajs/vue3'
+import MenuLayout from '../Layouts/LayoutMenu.vue'
     export default {
         name:'PageHome',
 
         components:{
-            Link
+            Head,
+            Link,
+            MenuLayout
         },
         props:{
             posts: Object,

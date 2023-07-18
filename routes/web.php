@@ -36,12 +36,26 @@ Route::get('/about', function(){
     ]);
 })->name('about');
 
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return Inertia::render('Dashboard');
+//     })->name('dashboard');
+// });
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/create', [PostController::class,'create'])->name('dashboard.create');
+    Route::post('/dashboard/store', [PostController::class,'store'])->name('dashboard.store');
+    Route::delete('/dashboard/destroy/{id}', [PostController::class,'destroy'])->name('dashboard.destroy');
+    Route::get('/dashboard/edit/{id}', [PostController::class,'edit'])->name('dashboard.edit');
+    Route::put('/dashboard/update/{id}', [PostController::class,'update'])->name('dashboard.update');
+
 });
